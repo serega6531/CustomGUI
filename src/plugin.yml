@@ -1,0 +1,5 @@
+name: CustomGUI
+main: ru.serega6531.CustomGUI.CustomGUI
+version: 1.0
+description: Dev tool for custom GUI
+author: serega6531
