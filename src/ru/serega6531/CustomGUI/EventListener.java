@@ -14,12 +14,13 @@ public class EventListener implements Listener {
 	public void onInventoryClick(InventoryClickEvent e){
 		Inventory inv = e.getInventory();
 		InventoryAction act = e.getAction();
+		CustomInterface intr = GUIList.getCustomGUI(inv.getName());
 		if(     ((act.equals(InventoryAction.PICKUP_ONE)) ||
 				(act.equals(InventoryAction.PICKUP_SOME)) ||
 		   		(act.equals(InventoryAction.PICKUP_ALL))) &&
 		   		(GUIList.isCustomGUI(inv.getName())) &&
-		   		(e.getCurrentItem().getItemMeta().getDisplayName().equals("Button"))){
-			CustomInterface intr = GUIList.getCustomGUI(inv.getName());
+		   		((e.getCurrentItem().getItemMeta().getDisplayName().equals(intr.getButton1().getName()) ||
+		   		(e.getCurrentItem().getItemMeta().getDisplayName().equals(intr.getButton2().getName()))))){
 			int slot = e.getSlot();
 			Player player = (Player) e.getWhoClicked();
 			if((slot > 9 && slot < 13) ||
@@ -33,7 +34,6 @@ public class EventListener implements Listener {
 			}
 			e.setCancelled(true);
 			player.closeInventory();
-			player.sendMessage(String.valueOf(slot));
 		}
 	}
 	
